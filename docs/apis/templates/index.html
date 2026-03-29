@@ -2057,24 +2057,24 @@
 <h4 id="get-apitemplates">GET /api/templates<a class="headerlink" href="#get-apitemplates" title="Permanent link">&para;</a></h4>
 <p>Retrieve all templates.</p>
 <h5 id="example-request">Example Request<a class="headerlink" href="#example-request" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/templates&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X GET 'http://localhost:9000/api/templates'</code></p>
 <h5 id="example-response">Example Response<a class="headerlink" href="#example-response" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default template&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ template \&quot;content\&quot; . }}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;body_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;campaign&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": [
+        {
+            "id": 1,
+            "created_at": "2020-03-14T17:36:41.288578+01:00",
+            "updated_at": "2020-03-14T17:36:41.288578+01:00",
+            "name": "Default template",
+            "body": "{{ template \"content\" . }}",
+            "body_source": null,
+            "type": "campaign",
+            "is_default": true
+        }
+    ]
+}</code></p>
 <hr />
 <h4 id="get-apitemplatestemplate_id">GET /api/templates/{template_id}<a class="headerlink" href="#get-apitemplatestemplate_id" title="Permanent link">&para;</a></h4>
 <p>Retrieve a specific template.</p>
@@ -2098,22 +2098,22 @@
 </tbody>
 </table>
 <h5 id="example-request_1">Example Request<a class="headerlink" href="#example-request_1" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/templates/1&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X GET 'http://localhost:9000/api/templates/1'</code></p>
 <h5 id="example-response_1">Example Response<a class="headerlink" href="#example-response_1" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default template&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ template \&quot;content\&quot; . }}&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;body_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;campaign&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": {
+        "id": 1,
+        "created_at": "2020-03-14T17:36:41.288578+01:00",
+        "updated_at": "2020-03-14T17:36:41.288578+01:00",
+        "name": "Default template",
+        "body": "{{ template \"content\" . }}",
+        "body_source": null,
+        "type": "campaign",
+        "is_default": true
+    }
+}</code></p>
 <hr />
 <h4 id="get-apitemplatestemplate_idpreview">GET /api/templates/{template_id}/preview<a class="headerlink" href="#get-apitemplatestemplate_idpreview" title="Permanent link">&para;</a></h4>
 <p>Retrieve the HTML preview of a template.</p>
@@ -2137,22 +2137,23 @@
 </tbody>
 </table>
 <h5 id="example-request_2">Example Request<a class="headerlink" href="#example-request_2" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/templates/1/preview&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X GET 'http://localhost:9000/api/templates/1/preview'</code></p>
 <h5 id="example-response_2">Example Response<a class="headerlink" href="#example-response_2" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hi there<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et elit ac elit sollicitudin condimentum non a magna.
+<p>```html</p>
+<p>Hi there</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et elit ac elit sollicitudin condimentum non a magna.
     Sed tempor mauris in facilisis vehicula. Aenean nisl urna, accumsan ac tincidunt vitae, interdum cursus massa.
     Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam varius turpis et turpis lacinia placerat.
     Aenean id ligula a orci lacinia blandit at eu felis. Phasellus vel lobortis lacus. Suspendisse leo elit, luctus sed
-    erat ut, venenatis fermentum ipsum. Donec bibendum neque quis.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    erat ut, venenatis fermentum ipsum. Donec bibendum neque quis.</p>
 
-<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Sub heading<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Nam luctus dui non placerat mattis. Morbi non accumsan orci, vel interdum urna. Duis faucibus id nunc ut euismod.
-    Curabitur et eros id erat feugiat fringilla in eget neque. Aliquam accumsan cursus eros sed faucibus.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<h3>Sub heading</h3>
+<p>Nam luctus dui non placerat mattis. Morbi non accumsan orci, vel interdum urna. Duis faucibus id nunc ut euismod.
+    Curabitur et eros id erat feugiat fringilla in eget neque. Aliquam accumsan cursus eros sed faucibus.</p>
 
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Here is a link to <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://listmonk.app&quot;</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span><span class="p">&gt;</span>listmonk<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</code></pre></div>
+<p>Here is a link to <a href="https://listmonk.app" target="_blank">listmonk</a>.</p>
+<p>```</p>
 <hr />
 <h4 id="post-apitemplates">POST /api/templates<a class="headerlink" href="#post-apitemplates" title="Permanent link">&para;</a></h4>
 <p>Create a template.</p>
@@ -2200,31 +2201,31 @@
 </tbody>
 </table>
 <h5 id="example-request_3">Example Request<a class="headerlink" href="#example-request_3" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/templates&#39;</span><span class="w"> </span><span class="se">\</span>
--H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
--d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;name&quot;: &quot;New template&quot;,</span>
-<span class="s1">    &quot;type&quot;: &quot;campaign&quot;,</span>
-<span class="s1">    &quot;subject&quot;: &quot;Your Weekly Newsletter&quot;,</span>
-<span class="s1">    &quot;body&quot;: &quot;&lt;h1&gt;Header&lt;/h1&gt;&lt;p&gt;Content goes here&lt;/p&gt;&quot;</span>
-<span class="s1">}&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X POST 'http://localhost:9000/api/templates' \
+-H 'Content-Type: application/json' \
+-d '{
+    "name": "New template",
+    "type": "campaign",
+    "subject": "Your Weekly Newsletter",
+    "body": "&lt;h1&gt;Header&lt;/h1&gt;&lt;p&gt;Content goes here&lt;/p&gt;"
+}'</code></p>
 <h5 id="example-response_3">Example Response<a class="headerlink" href="#example-response_3" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default template&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ template \&quot;content\&quot; . }}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;body_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;campaign&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": [
+        {
+            "id": 1,
+            "created_at": "2020-03-14T17:36:41.288578+01:00",
+            "updated_at": "2020-03-14T17:36:41.288578+01:00",
+            "name": "Default template",
+            "body": "{{ template \"content\" . }}",
+            "body_source": null,
+            "type": "campaign",
+            "is_default": true
+        }
+    ]
+}</code></p>
 <hr />
 <h4 id="put-apitemplatestemplate_id">PUT /api/templates/{template_id}<a class="headerlink" href="#put-apitemplatestemplate_id" title="Permanent link">&para;</a></h4>
 <p>Update a template.</p>
@@ -2254,22 +2255,22 @@
 </tbody>
 </table>
 <h5 id="example-request_4">Example Request<a class="headerlink" href="#example-request_4" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/templates/1/default&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X PUT 'http://localhost:9000/api/templates/1/default'</code></p>
 <h5 id="example-response_4">Example Response<a class="headerlink" href="#example-response_4" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020-03-14T17:36:41.288578+01:00&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Default template&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{{ template \&quot;content\&quot; . }}&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;body_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;campaign&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": {
+        "id": 1,
+        "created_at": "2020-03-14T17:36:41.288578+01:00",
+        "updated_at": "2020-03-14T17:36:41.288578+01:00",
+        "name": "Default template",
+        "body": "{{ template \"content\" . }}",
+        "body_source": null,
+        "type": "campaign",
+        "is_default": true
+    }
+}</code></p>
 <hr />
 <h4 id="delete-apitemplatestemplate_id">DELETE /api/templates/{template_id}<a class="headerlink" href="#delete-apitemplatestemplate_id" title="Permanent link">&para;</a></h4>
 <p>Delete a template.</p>
@@ -2293,13 +2294,13 @@
 </tbody>
 </table>
 <h5 id="example-request_5">Example Request<a class="headerlink" href="#example-request_5" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/templates/35&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X DELETE 'http://localhost:9000/api/templates/35'</code></p>
 <h5 id="example-response_5">Example Response<a class="headerlink" href="#example-response_5" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": true
+}</code></p>
 
 
 

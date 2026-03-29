@@ -1555,7 +1555,17 @@
 <tr>
 <td></td>
 <td>campaigns:manage</td>
-<td>Create, update, and delete campaigns</td>
+<td>Create, update, and delete campaigns belonging to permitted lists</td>
+</tr>
+<tr>
+<td></td>
+<td>campaigns:manage_all</td>
+<td>Create, update, and delete campaigns across all lists</td>
+</tr>
+<tr>
+<td></td>
+<td>campaigns:send</td>
+<td>Start, schedule, pause, resume, and cancel campaigns. This is independent of manage permissions. This is required to send a campaign, even with <code>campaigns:manage_all</code></td>
 </tr>
 <tr>
 <td>bounces</td>
@@ -1637,14 +1647,14 @@
 <p>This permission allowers users to write and execute arbitrary SQL queries on the database. Although it is executed as a read-only transaction disallowing changing of data in the database tables, it allows querying of all lists, subscribers and other data directly from the database superceding individual list and subscriber permissions.</p>
 <p>Raw SQL expressions also make it possible to obtain Postgres database configuration and potentially interact with other Postgres system features. Give this permission ONLY to trusted users.</p>
 <p>If this permission is being assigned to many users, it is highly recommended that you create a custom Postgres role disallowing any privileged operations. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">listmonk_app</span><span class="w"> </span><span class="k">WITH</span>
-<span class="w">    </span><span class="n">LOGIN</span>
-<span class="w">    </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;...&#39;</span>
-<span class="w">    </span><span class="n">NOSUPERUSER</span>
-<span class="w">    </span><span class="k">NOCREATEDB</span>
-<span class="w">    </span><span class="n">NOCREATEROLE</span>
-<span class="w">    </span><span class="n">NOREPLICATION</span><span class="p">;</span>
-</code></pre></div>
+<p><code>sql
+CREATE ROLE listmonk_app WITH
+    LOGIN
+    PASSWORD '...'
+    NOSUPERUSER
+    NOCREATEDB
+    NOCREATEROLE
+    NOREPLICATION;</code></p>
 
 
 

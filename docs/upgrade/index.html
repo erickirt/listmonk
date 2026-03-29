@@ -1549,15 +1549,15 @@
 <p>If it's not running as a service, <code>pkill -9 listmonk</code> will stop the listmonk process.</p>
 <h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h2>
 <p><strong>Important:</strong> The following instructions are for the new <a href="https://github.com/knadh/listmonk/blob/master/docker-compose.yml">docker-compose.yml</a> file.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>app
-docker<span class="w"> </span>compose<span class="w"> </span>pull
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>app<span class="w"> </span>-d
-</code></pre></div>
+<p><code>shell
+docker compose down app
+docker compose pull
+docker compose up app -d</code></p>
 <p>If you are using an older docker-compose.yml file, you have to run the <code>--upgrade</code> step manually.</p>
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
-docker-compose<span class="w"> </span>pull<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>app<span class="w"> </span>./listmonk<span class="w"> </span>--upgrade
-docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>app<span class="w"> </span>db
-</code></pre></div>
+<p><code>shell
+docker-compose down
+docker-compose pull &amp;&amp; docker-compose run --rm app ./listmonk --upgrade
+docker-compose up -d app db</code></p>
 <h2 id="nightly">Nightly<a class="headerlink" href="#nightly" title="Permanent link">&para;</a></h2>
 <p>See <a href="../installation/#nightly">here</a> for instructions on how to access the nightly builds.</p>
 <hr />
@@ -1573,20 +1573,17 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w
 <p><strong>Example with docker:</strong></p>
 <ol>
 <li>Stop listmonk (app):
-<div class="highlight"><pre><span></span><code>sudo docker stop listmonk_app
-</code></pre></div></li>
+<code>sudo docker stop listmonk_app</code></li>
 <li>Restore your pre-upgrade db (required) <em>(be careful, this will wipe your existing DB)</em>:
-<div class="highlight"><pre><span></span><code>psql -h 127.0.0.1 -p 9432 -U listmonk
+<code>psql -h 127.0.0.1 -p 9432 -U listmonk
 drop schema public cascade;
 create schema public;
 \q
-psql -h 127.0.0.1 -p 9432 -U listmonk -W listmonk &lt; listmonk-preupgrade-db.sql
-</code></pre></div></li>
+psql -h 127.0.0.1 -p 9432 -U listmonk -W listmonk &lt; listmonk-preupgrade-db.sql</code></li>
 <li>Edit the <code>docker-compose.yml</code>:
-<div class="highlight"><pre><span></span><code>x-app-defaults: &amp;app-defaults
+<code>x-app-defaults: &amp;app-defaults
   restart: unless-stopped
-  image: listmonk/listmonk:v2.4.0
-</code></pre></div></li>
+  image: listmonk/listmonk:v2.4.0</code></li>
 <li>Restart:
 <code>sudo docker compose up -d app db nginx certbot</code></li>
 </ol>

@@ -1805,29 +1805,29 @@
 <h4 id="get-apiimportsubscribers">GET /api/import/subscribers<a class="headerlink" href="#get-apiimportsubscribers" title="Permanent link">&para;</a></h4>
 <p>Retrieve the status of an ongoing import.</p>
 <h5 id="example-request">Example Request<a class="headerlink" href="#example-request" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/import/subscribers&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X GET 'http://localhost:9000/api/import/subscribers'</code></p>
 <h5 id="example-response">Example Response<a class="headerlink" href="#example-response" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;imported&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": {
+        "name": "",
+        "total": 0,
+        "imported": 0,
+        "status": "none"
+    }
+}</code></p>
 <hr />
 <h4 id="get-apiimportsubscriberslogs">GET /api/import/subscribers/logs<a class="headerlink" href="#get-apiimportsubscriberslogs" title="Permanent link">&para;</a></h4>
 <p>Retrieve logs from an ongoing import.</p>
 <h5 id="example-request_1">Example Request<a class="headerlink" href="#example-request_1" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/import/subscribers/logs&#39;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X GET 'http://localhost:9000/api/import/subscribers/logs'</code></p>
 <h5 id="example-response_1">Example Response<a class="headerlink" href="#example-response_1" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2020/04/08 21:55:20 processing &#39;import.csv&#39;\n2020/04/08 21:55:21 imported finished\n&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": "2020/04/08 21:55:20 processing 'import.csv'\n2020/04/08 21:55:21 imported finished\n"
+}</code></p>
 <hr />
 <h4 id="post-apiimportsubscribers">POST /api/import/subscribers<a class="headerlink" href="#post-apiimportsubscribers" title="Permanent link">&para;</a></h4>
 <p>Send a CSV (optionally ZIP compressed) file to import subscribers. Use a multipart form POST.</p>
@@ -1894,34 +1894,34 @@
 </tbody>
 </table>
 <h5 id="example-request_2">Example Request<a class="headerlink" href="#example-request_2" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/import/subscribers&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-F<span class="w"> </span><span class="s1">&#39;params={&quot;mode&quot;:&quot;subscribe&quot;, &quot;subscription_status&quot;:&quot;confirmed&quot;, &quot;delim&quot;:&quot;,&quot;, &quot;lists&quot;:[1, 2], &quot;overwrite&quot;: true}&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;file=@/path/to/subs.csv&quot;</span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X POST 'http://localhost:9000/api/import/subscribers' \
+  -F 'params={"mode":"subscribe", "subscription_status":"confirmed", "delim":",", "lists":[1, 2], "overwrite": true}' \
+  -F "file=@/path/to/subs.csv"</code></p>
 <h5 id="example-response_2">Example Response<a class="headerlink" href="#example-response_2" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;subscribe&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// subscribe or blocklist</span>
-<span class="w">        </span><span class="nt">&quot;delim&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="w">        </span><span class="c1">// delimiter in the uploaded file</span>
-<span class="w">        </span><span class="nt">&quot;lists&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">],</span><span class="w">         </span><span class="c1">// array of list IDs to import into</span>
-<span class="w">        </span><span class="nt">&quot;overwrite&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">    </span><span class="c1">// overwrite existing entries or skip them?</span>
-<span class="w">    </span><span class="p">}</span>
-</code></pre></div>
+<p><code>json
+    {
+        "mode": "subscribe", // subscribe or blocklist
+        "delim": ",",        // delimiter in the uploaded file
+        "lists":[1],         // array of list IDs to import into
+        "overwrite": true    // overwrite existing entries or skip them?
+    }</code></p>
 <hr />
 <h4 id="delete-apiimportsubscribers">DELETE /api/import/subscribers<a class="headerlink" href="#delete-apiimportsubscribers" title="Permanent link">&para;</a></h4>
 <p>Stop and delete an ongoing import.</p>
 <h5 id="example-request_3">Example Request<a class="headerlink" href="#example-request_3" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;api_user:token&quot;</span><span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/import/subscribers&#39;</span><span class="w"> </span>
-</code></pre></div>
+<p><code>shell
+curl -u "api_user:token" -X DELETE 'http://localhost:9000/api/import/subscribers'</code></p>
 <h5 id="example-response_3">Example Response<a class="headerlink" href="#example-response_3" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;imported&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><code>json
+{
+    "data": {
+        "name": "",
+        "total": 0,
+        "imported": 0,
+        "status": "none"
+    }
+}</code></p>
 
 
 

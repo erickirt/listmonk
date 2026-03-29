@@ -2004,43 +2004,42 @@
 <p>And under <code>https://listmonk.mysite.com/admin/settings</code> you put <code>/listmonk/uploads</code>. </p>
 <h4 id="using-volumes">Using volumes<a class="headerlink" href="#using-volumes" title="Permanent link">&para;</a></h4>
 <p>Using <code>docker volumes</code>, you can specify the name of volume and destination for the files to be uploaded inside the container.</p>
-<div class="highlight"><pre><span></span><code>app:
+<p>```yml
+app:
     volumes:
       - type: volume
         source: listmonk-uploads
-        target: /listmonk/uploads
-
-volumes:
+        target: /listmonk/uploads</p>
+<p>volumes:
   listmonk-uploads:
-</code></pre></div>
+```</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This volume is managed by <code>docker</code> itself, and you can see find the host path with <code>docker volume inspect listmonk_listmonk-uploads</code>.</p>
 </div>
 <h4 id="using-bind-mounts">Using bind mounts<a class="headerlink" href="#using-bind-mounts" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>  app:
+<p><code>yml
+  app:
     volumes:
-      - ./path/on/your/host/:/path/inside/container
-</code></pre></div>
+      - ./path/on/your/host/:/path/inside/container</code>
 Eg:
-<div class="highlight"><pre><span></span><code>  app:
+<code>yml
+  app:
     volumes:
-      - ./data/uploads:/listmonk/uploads
-</code></pre></div>
+      - ./data/uploads:/listmonk/uploads</code>
 The files will be available inside <code>/data/uploads</code> directory on the host machine.</p>
 <p>To use the default <code>uploads</code> folder:
-<div class="highlight"><pre><span></span><code>  app:
+<code>yml
+  app:
     volumes:
-      - ./uploads:/listmonk/uploads
-</code></pre></div></p>
+      - ./uploads:/listmonk/uploads</code></p>
 <h2 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
 <h3 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
 <p>https://docs.docker.com/engine/reference/commandline/logs/
-<div class="highlight"><pre><span></span><code>sudo docker logs -f
+<code>sudo docker logs -f
 sudo docker logs listmonk_app -t
 sudo docker logs listmonk_db -t
-sudo docker logs --help
-</code></pre></div>
+sudo docker logs --help</code>
 Container info: <code>sudo docker inspect listmonk_listmonk</code></p>
 <p>Docker logs to <code>/dev/stdout</code> and <code>/dev/stderr</code>. The logs are collected by the docker daemon and stored in your node's host path (by default). The same can be configured (/etc/docker/daemon.json) in your docker daemon settings to setup other logging drivers, logrotate policy and more, which you can read about <a href="https://docs.docker.com/config/containers/logging/configure/">here</a>.</p>
 <h3 id="binary">Binary<a class="headerlink" href="#binary" title="Permanent link">&para;</a></h3>
@@ -2049,9 +2048,8 @@ Container info: <code>sudo docker inspect listmonk_listmonk</code></p>
 <p>For the <a href="https://github.com/knadh/listmonk/blob/master/listmonk%40.service">service file</a>, you can use <code>ExecStart=/bin/bash -ce "exec /usr/bin/listmonk --config /etc/listmonk/config.toml --static-dir /etc/listmonk/static &gt;&gt;/etc/listmonk/listmonk.log 2&gt;&amp;1"</code> to create a log file that persists after restarts. <a href="https://github.com/knadh/listmonk/issues/1462#issuecomment-1868501606">More info</a>.</p>
 <h2 id="time-zone">Time zone<a class="headerlink" href="#time-zone" title="Permanent link">&para;</a></h2>
 <p>To change listmonk's time zone (logs, etc.) edit <code>docker-compose.yml</code>:
-<div class="highlight"><pre><span></span><code>environment:
-    - TZ=Etc/UTC
-</code></pre></div>
+<code>environment:
+    - TZ=Etc/UTC</code>
 with any Timezone listed <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">here</a>. Then run <code>sudo docker-compose stop ; sudo docker-compose up</code> after making changes.</p>
 <h2 id="smtp">SMTP<a class="headerlink" href="#smtp" title="Permanent link">&para;</a></h2>
 <h3 id="retries">Retries<a class="headerlink" href="#retries" title="Permanent link">&para;</a></h3>
