@@ -1549,11 +1549,10 @@
 <p>Enable bounce processing in Settings -&gt; Bounces. POP3 bounce scanning and APIs only become available once the setting is enabled.</p>
 <h2 id="pop3-bounce-mailbox">POP3 bounce mailbox<a class="headerlink" href="#pop3-bounce-mailbox" title="Permanent link">&para;</a></h2>
 <p>Configure the bounce mailbox in Settings -&gt; Bounces. Either the "From" e-mail that is set on a campaign (or in settings) should have a POP3 mailbox behind it to receive bounce e-mails, or you should configure a dedicated POP3 mailbox and add that address as the <code>Return-Path</code> (envelope sender) header in Settings -&gt; SMTP -&gt; Custom headers box. For example:</p>
-<p>```
-[
-    {"Return-Path": "your-bounce-inbox@site.com"}
-]</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code>[
+    {&quot;Return-Path&quot;: &quot;your-bounce-inbox@site.com&quot;}
+]
+</code></pre></div>
 <p>Some mail servers may also return the bounce to the <code>Reply-To</code> address, which can also be added to the header settings.</p>
 <h3 id="bounce-classification">Bounce classification<a class="headerlink" href="#bounce-classification" title="Permanent link">&para;</a></h3>
 <p>listmonk applies a series of heuristics looking for keywords in the bounced mail body to guess if it is a 'soft' bounce or a 'hard' bounce. For instance, 4.x.x and 5.x.x error status codes, common strings such as "mailbox not found" etc. If none of the heuristics match, then the bounce mail is considered to be 'soft' by default.</p>
@@ -1623,11 +1622,10 @@
 </tr>
 </tbody>
 </table>
-<p>```shell
-curl -u 'api_username:access_token' -X POST 'http://localhost:9000/webhooks/bounce' \
-    -H "Content-Type: application/json" \
-    --data '{"email": "user1@mail.com", "campaign_uuid": "9f86b50d-5711-41c8-ab03-bc91c43d711b", "source": "api", "type": "hard", "meta": "{\"additional\": \"info\"}}'</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s1">&#39;api_username:access_token&#39;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s1">&#39;http://localhost:9000/webhooks/bounce&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;email&quot;: &quot;user1@mail.com&quot;, &quot;campaign_uuid&quot;: &quot;9f86b50d-5711-41c8-ab03-bc91c43d711b&quot;, &quot;source&quot;: &quot;api&quot;, &quot;type&quot;: &quot;hard&quot;, &quot;meta&quot;: &quot;{\&quot;additional\&quot;: \&quot;info\&quot;}}&#39;</span>
+</code></pre></div>
 <h2 id="external-webhooks">External webhooks<a class="headerlink" href="#external-webhooks" title="Permanent link">&para;</a></h2>
 <p>listmonk supports receiving bounce webhook events from the following SMTP providers.</p>
 <table>
@@ -1662,7 +1660,7 @@ curl -u 'api_username:access_token' -X POST 'http://localhost:9000/webhooks/boun
 <tr>
 <td style="text-align: left;"><code>https://listmonk.yoursite.com/webhooks/service/lettermint</code></td>
 <td style="text-align: left;">Lettermint webhook</td>
-<td style="text-align: left;"><a href="https://docs.lettermint.co/platform/webhooks/introduction">More info</a></td>
+<td style="text-align: left;"><a href="https://lettermint.co/knowledge-base/guides/send-newsletter-with-listmonk">More info</a></td>
 </tr>
 </tbody>
 </table>
@@ -1723,17 +1721,17 @@ curl -u 'api_username:access_token' -X POST 'http://localhost:9000/webhooks/boun
 </ol>
 <h2 id="exporting-bounces">Exporting bounces<a class="headerlink" href="#exporting-bounces" title="Permanent link">&para;</a></h2>
 <p>Bounces can be exported via the JSON API:
-<code>shell
-curl -u 'username:passsword' 'http://localhost:9000/api/bounces'</code></p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-u<span class="w"> </span><span class="s1">&#39;username:passsword&#39;</span><span class="w"> </span><span class="s1">&#39;http://localhost:9000/api/bounces&#39;</span>
+</code></pre></div></p>
 <p>Or by querying the database directly:
-<code>sql
-SELECT bounces.created_at,
-    bounces.subscriber_id,
-    subscribers.uuid AS subscriber_uuid,
-    subscribers.email AS email
-FROM bounces
-LEFT JOIN subscribers ON (subscribers.id = bounces.subscriber_id)
-ORDER BY bounces.created_at DESC LIMIT 1000;</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">bounces</span><span class="p">.</span><span class="n">created_at</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bounces</span><span class="p">.</span><span class="n">subscriber_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">subscribers</span><span class="p">.</span><span class="n">uuid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">subscriber_uuid</span><span class="p">,</span>
+<span class="w">    </span><span class="n">subscribers</span><span class="p">.</span><span class="n">email</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">email</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">bounces</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">subscribers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">subscribers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bounces</span><span class="p">.</span><span class="n">subscriber_id</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bounces</span><span class="p">.</span><span class="n">created_at</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+</code></pre></div></p>
 
 
 
